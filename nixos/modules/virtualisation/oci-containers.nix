@@ -232,19 +232,19 @@ let
             default = [ ];
             description = "Configures requirement dependencies of according systemd unit on other units.";
             example = literalExpression ''
-            ["network.target"]
-          '';
+              ["network.target"]
+            '';
           };
           after = mkOption {
             type = with types; listOf str;
             default = [ ];
             description = " Configures ordering dependencies between according systemd unit and other units.";
             example = literalExpression ''
-            ["network.target"]
-          '';
+              ["network.target"]
+            '';
           };
         };
-        
+
         extraOptions = mkOption {
           type = with types; listOf str;
           default = [ ];
@@ -293,6 +293,9 @@ let
           ''}
         ${optionalString (container.imageFile != null) ''
           ${cfg.backend} load -i ${container.imageFile}
+          ''}
+        ${optionalString (container.image != null) ''
+          ${cfg.backend} pull ${container.imageFile}
           ''}
       '';
 
