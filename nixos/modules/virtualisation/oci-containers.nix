@@ -294,7 +294,7 @@ let
         ${optionalString (container.imageFile != null) ''
           ${cfg.backend} load -i ${container.imageFile}
           ''}
-        ${optionalString (container.image != null) ''
+        ${optionalString (container ? image) ''
           ${cfg.backend} pull ${container.imageFile}
           ''}
       '';
