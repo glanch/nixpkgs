@@ -295,7 +295,7 @@ let
           ${cfg.backend} load -i ${container.imageFile}
           ''}
         ${optionalString (container ? image) ''
-          ${cfg.backend} pull ${container.imageFile}
+          ${cfg.backend} pull ${container.image}
           ''}
       '';
 
