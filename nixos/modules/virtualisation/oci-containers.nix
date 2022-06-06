@@ -97,6 +97,18 @@ let
           '';
         };
 
+        labels = mkOption {
+          type = with types; attrsOf str;
+          default = { };
+          description = "Labels to set for this container.";
+          example = literalExpression ''
+            {
+              traefik.enable = "true";
+              traefik.docker.network = "traefik";
+            }
+          '';
+        };
+
         log-driver = mkOption {
           type = types.str;
           default = "journald";
@@ -308,6 +320,7 @@ let
         "--entrypoint=${escapeShellArg container.entrypoint}"
       ++ (mapAttrsToList (k: v: "-e ${escapeShellArg k}=${escapeShellArg v}") container.environment)
       ++ map (f: "--env-file ${escapeShellArg f}") container.environmentFiles
+      ++ (mapAttrsToList (k: v: "--label ${escapeShellArg k}=${escapeShellArg v}") container.labels)
       ++ map (p: "-p ${escapeShellArg p}") container.ports
       ++ optional (container.user != null) "-u ${escapeShellArg container.user}"
       ++ map (v: "-v ${escapeShellArg v}") container.volumes
