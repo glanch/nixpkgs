@@ -12,7 +12,6 @@
 , libffi
 , expat
 , libGL
-
 , libX11
 , libxkbcommon
 , libXext
@@ -48,16 +47,15 @@ let
 in
 stdenv.mkDerivation rec {
   pname = "looking-glass-client";
-  version = "B6";
+  version = "B7-rc1-master-backport";
 
   src = fetchFromGitHub {
     owner = "gnif";
     repo = "LookingGlass";
-    rev = version;
-    sha256 = "sha256-6vYbNmNJBCoU23nVculac24tHqH7F4AZVftIjL93WJU=";
+    rev = "a626a1142d99c0c388d5873afb70539cf2a17201";
+    hash = "sha256-jUvwIi4BrQO+BtHjHvK5SS8oGEkonTgf4Pq3j+p6QzU=";
     fetchSubmodules = true;
   };
-
   nativeBuildInputs = [ cmake pkg-config ];
 
   buildInputs = [ libGL libX11 freefont_ttf spice-protocol expat libbfd nettle fontconfig libffi ]
