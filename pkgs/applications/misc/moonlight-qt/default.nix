@@ -29,13 +29,13 @@ stdenv.mkDerivation rec {
 
   src = fetchFromGitHub {
     owner = "moonlight-stream";
-    repo = pname;
-    rev = "v${version}";
-    sha256 = "sha256-0ONjUqpM1tUnyaEnMgVl7ff6pND7kyqouv2mpgteZP0=";
+    repo = "moonlight-qt";
+    rev = "89a628a0dde50264fd2170125588c15d8dd80a2c";
+    hash = "sha256-6KJTYYbrIPt3zNaK63fcFBb9W8reItpeqylugj0CwjU=";
     fetchSubmodules = true;
   };
 
-  patches = [ ./darwin.diff ];
+  #patches = [ ./darwin.diff ];
 
   nativeBuildInputs = [
     wrapQtAppsHook
